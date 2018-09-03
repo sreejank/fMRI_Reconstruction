@@ -25,6 +25,11 @@ from os.path import isfile, join
 
 from dgn import *
 
+from load import *
+import pickle
+import sys
+
+
 BATCH_SIZE=1
 
 from PIL import ImageFile
@@ -193,7 +198,7 @@ def reconstruct_from_feature_no_prior(pre_match_vals,out_name,iters_dir):
 		print('FINISHED.')
 
 
-def reconstruct_from_feature_prior(pre_match_vals,out_name,iters_dir): 
+def reconstruct_from_feature_gan_prior(pre_match_vals,out_name,iters_dir): 
 
 	upper_bound=np.loadtxt('fc7.txt',delimiter=' ',usecols=np.arange(0,4096),unpack=True)
 	upper_bound=upper_bound.reshape((1,4096)).astype('float32')
@@ -356,37 +361,26 @@ names=[f[:-4] for f in listdir(input_dir) if isfile(join(input_dir,f))]
 fnames=[input_dir+names[i]+".png" for i in range(len(names))]"""
 
 
-#reconstruct_from_image(fnames[0],"test_recons/"+names[0]+".png")
-
-from load import *
-import pickle
-
-#all_features=pickle.load(open("/gpfs/milgram/project/chun/sk2436/reconstruction/cnn_features2/full_recon_features.pickle","rb"))
-
-#all_features=pickle.load(open("/gpfs/milgram/project/chun/sk2436/reconstruction/cnn_features2/vgg19_testv2.pickle","rb"))
-#input_dir="/gpfs/milgram/project/chun/sk2436/reconstruction/test/"
-#names_set=[f[:-4] for f in listdir(input_dir) if isfile(join(input_dir,f))]
 
 
+
+
+#Path to BOLD-decoded CNN activity here. 
 all_features=pickle.load(open("/gpfs/milgram/project/chun/sk2436/reconstruction/cnn_features2/full_recon_featuresv3.pickle","rb"))
 
+#Filename of names of features here. 
 names,_=load_imagenet_BOLD_features('PPA',1,train=False)
 
 names_set=sorted(list(set(names)))
 
 
-print(names_set)
 
-import sys
 
 i=int(sys.argv[1])
-
-
 name="test_recons3/model_"+names_set[i]+".png"
 print(name)
 iters_dir='/gpfs/milgram/project/chun/sk2436/reconstruction/iters'+str(i)+'/'
 feats=all_features[i]
-
-reconstruct_from_feature_prior(feats,name,iters_dir)
+reconstruct_from_feature_gan_prior(feats,name,iters_dir)
 
 
