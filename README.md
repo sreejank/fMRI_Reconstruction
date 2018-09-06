@@ -8,7 +8,7 @@ The data and scripts used to transfer the brain data to model space was a part o
 
 The Generative Adverserial Network used (Dosovitskiy & Brox 2016 NIPS 2016) was written in Caffe and was converted to Tensorflow. Some code from this repo was used to do this: https://github.com/zjuchenlong/sp-aen.cvpr18. 
 
-The following are example reconstructions (left original images, right reconstructed image)
+The following are example reconstructions (left original images, right reconstructed image from brain activity.)
 
 ![alt text](https://github.com/sreejank/fMRI_Reconstruction/blob/master/img1.png)
 ![alt text](https://github.com/sreejank/fMRI_Reconstruction/blob/master/img2.png)
