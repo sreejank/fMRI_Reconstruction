@@ -1,6 +1,6 @@
 # fMRI_Reconstruction
 
-A Tensorflow implementation of the reconstruction algorithm described in "Deep Image Reconstruction from Human Brain Activity" (https://www.biorxiv.org/content/early/2017/12/28/240317). This algorithm takes reconstructs image stimuli participants were viewing given their brain activity. 
+A Tensorflow implementation of the reconstruction algorithm described in "Deep Image Reconstruction from Human Brain Activity" (Shen et al 2017, https://www.biorxiv.org/content/early/2017/12/28/240317). This algorithm reconstructs image stimuli participants were viewing given their brain activity. 
 
 The algorithm takes predicted CNN activity decoded from brain data and reconstructs the image using Gradient Descent with Momentum. In order to constrain reconstructions to the space of natural images, a Deep Generative Network (DGN) taken from a Generative Adverserial Network is utilized. The DGN takes a vector z as input and produces an image. Gradients are calculated with respect to z and loss is computed with respect to the generated image. See the preprint (https://www.biorxiv.org/content/early/2017/12/28/240317) for more details.
 
